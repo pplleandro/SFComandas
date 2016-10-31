@@ -1,0 +1,25 @@
+package ejb;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ * Session Bean implementation class FuncionarioBean
+ */
+@Stateless
+@LocalBean
+public class FuncionarioBean implements FuncionarioBeanLocal{
+
+    /**
+     * Default constructor. 
+     */
+    public FuncionarioBean() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

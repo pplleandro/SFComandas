@@ -1,0 +1,11 @@
+package ejb;
+
+import javax.ejb.Local;
+
+import version01.Funcionario;
+
+@Local
+public interface FuncionarioBeanLocal {
+	public void save(Cliente cliente);
+	public void remove(Cliente cliente);
+}

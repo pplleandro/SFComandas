@@ -1,0 +1,11 @@
+package ejb;
+
+import version01.Estoque;
+
+@Local
+public interface EstoqueBeanLocal {
+	
+	public void save(Estoque estq);
+	public void remove(Estoque estq);
+
+}

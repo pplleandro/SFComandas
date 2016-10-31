@@ -1,0 +1,8 @@
+INDEX VERSION 1.3+Z:\B. Sistemas de Informação 3º Ano\DSI 3º Ano\DSI PROGRAMAÇÃO - Copia\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3225456591.index
+3695474219.index
+2003611235.index
+1547463536.index
+3008537362.index
+2412871996.index
+1220206634.index

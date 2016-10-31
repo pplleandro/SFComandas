@@ -1,0 +1,4 @@
+#GlassFish 3
+#Mon Oct 31 20:10:32 BRST 2016
+org.eclipse.jst.jee.server\:SFComandasWEB=C\:\\glassfish4\\glassfish\\domains\\domain1\\eclipseApps\\SFComandasWEB
+org.eclipse.jst.jee.server\:SFComandasServer=C\:\\glassfish4\\glassfish\\domains\\domain1\\eclipseApps\\SFComandasServer

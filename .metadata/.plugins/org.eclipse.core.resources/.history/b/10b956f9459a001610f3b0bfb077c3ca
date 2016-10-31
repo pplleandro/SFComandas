@@ -1,0 +1,10 @@
+package ejb;
+
+import version01.Servicos;
+
+public interface ServicosBeanLocal {
+	
+	public void save(Servicos cliente);
+	public void remove(Servicos cliente);
+	
+}

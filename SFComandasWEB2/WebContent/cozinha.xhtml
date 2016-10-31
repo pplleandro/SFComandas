@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Modulo Cozinha</title>
+</h:head>
+
+<body>
+	<p:panel width="" height="300px">
+	              SuperFacilComandas 
+	</p:panel>
+	 <br>
+     </br>
+				 
+	<p:layout style="min-width:900px;min-height:600px;">
+		<p:layoutUnit position="west" resizable="true" size="220" minSize="60"
+			maxSize="200">
+        MenuSFC
+        <br>
+        </br>
+        <h:form>
+				<p:growl id="messages" showDetail="true" />
+
+				<p:slideMenu style="width:180px">
+				
+					<p:submenu label="Inicio" icon="ui-icon-refresh">
+					
+						<p:menuitem value="Save" actionListener="#{menuView.save}"
+							update="messages" icon="ui-icon-disk" />
+							
+						<p:menuitem value="Update" actionListener="#{menuView.update}"
+							update="messages" icon="ui-icon-arrowrefresh-1-w" />
+					</p:submenu>
+					<p:submenu label="Cadastro" icon="ui-icon-refresh">
+						<p:menuitem value="Save" actionListener="#{menuView.save}"
+							update="messages" icon="ui-icon-disk" />
+						<p:menuitem value="Update" actionListener="#{menuView.update}"
+							update="messages" icon="ui-icon-arrowrefresh-1-w" />
+					</p:submenu>
+					
+					<p:separator />
+					<p:submenu label="Paginas" icon="ui-icon-extlink">
+						<p:submenu label="Prime Links">
+							<p:menuitem value="Prime" url="http://www.prime.com.tr" />
+							<p:menuitem value="PrimeFaces" url="http://www.primefaces.org" />
+						</p:submenu>
+						<p:menuitem value="Mobile"/>
+					</p:submenu>
+				</p:slideMenu>
+		</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+        
+			<h:form id="formtable" >
+			
+				<p:panel width="" height=""
+				 header="Manter Pedidos">
+				
+					<p:dataTable>
+					
+						<f:facet name="header">Lista de Pedidos</f:facet>
+						
+						<p:column>
+							<f:facet name="header">Comanda</f:facet>
+							<h:outputText/> 
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">Item/Produto</f:facet>
+							<h:outputText/> 
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">Mesa Nº</f:facet>
+							<h:outputText/> 
+						</p:column>
+						
+						<f:facet name="footer">
+							<p:commandButton value="Finalizar Pedido"  
+								id="cbIncluir" onsuccess="PF('dlg1').show()" 
+								update=":form"/>
+				
+							<p:commandButton value="Vizualizar" 
+							    id="cbVizu" 
+								update=":form"
+								onsuccess="PF('dlg1').show()"/>
+								
+							<p:commandButton value="Excluir" 
+							    id="cbExcluir" 
+								update=":form"
+								onsuccess="PF('dlg1').show()"/>
+									
+						</f:facet>
+						
+				    </p:dataTable>
+				</p:panel>
+			</h:form>
+			
+			
+			<p:dialog width="500" height="300" 
+				id="detailDialog" modal="true"
+				header="Detalhe do Pedido" 
+				widgetVar="dlg1">
+				<h:form id="form">
+				
+					<h:panelGrid id="formDetail" columns="2">
+						<h:outputLabel name="lblNome" value="Produto"/>
+						<p:inputText id="txtPNome" label="lblPNome" />
+						
+						<h:outputLabel name="lblQtd" value="Quantidade"/>
+						<p:inputText id="txtQtd" label="lblQtd" />
+							
+						<h:outputLabel name="lblDetalhes" value="Detalhes"/>
+						<p:inputText id="txtDetalhes" label="lblDetalhes" />
+						<br/>
+						<f:facet name="footer">
+			               <p:commandButton  value="OK"
+			               	id="cbOK"
+			               	onsuccess="PF('dlg1').hide()"/>			               	
+			            </f:facet>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>	
+		
+        
+        
+ 
+        
+    </p:layoutUnit>
+	</p:layout>
+	
+</body>
+</html>
+
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Manter Cliente</title>
+</h:head>
+<body>
+	<h:form id="formtable">
+
+		<p:panel width="" height="" header="Manter Cliente">
+            <p:inputText id="txtBusca">
+                <p:commandButton value="busca" id="btnBusca"
+                action="#{crtcliente.busca()}"
+                update="tabledados"
+                />
+                
+         
+            </p:inputText>
+			<p:dataTable value="#{crtcliente.getAllCliente()}" var="umcliente"
+				selectionMode="single" selection="#{crtcliente.model}"
+				rowKey="#{umcliente.oid}" id="tabledados">
+
+				<f:facet name="header">Lista de Clientes</f:facet>
+
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{umcliente.nome}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Telefone</f:facet>
+					<h:outputText value="#{umcliente.telefone}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">Email</f:facet>
+					<h:outputText value="#{umcliente.email}" />
+				</p:column>
+
+				<f:facet name="footer">
+					<p:commandButton value="Incluir" action="#{crtcliente.create()}"
+						id="cbIncluir" onsuccess="PF('dlg1').show()" update=":form" />
+
+					<p:commandButton value="Alterar" id="cbAlterar" update=":form"
+						onsuccess="PF('dlg1').show()" />
+
+					<p:commandButton value="Excluir" id="cbExcluir" update=":form"
+						icon="ui-icon-extlink" oncomplete="PF('dlgRemove').show()" />
+
+				</f:facet>
+
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+
+
+	<p:dialog width="500" height="300" id="detailDialog" modal="true"
+		header="Detalhe do Cliente" widgetVar="dlg1">
+		<h:form id="form">
+
+			<h:panelGrid id="formDetail" columns="2">
+				<h:outputLabel name="lblNome" value="Nome" />
+				<p:inputText id="txtNome" label="lblNome"
+					value="#{crtcliente.model.nome}" />
+
+				<h:outputLabel name="lblTel" value="Telefone" />
+				<p:inputText id="txtTel" label="lblTel"
+					value="#{crtcliente.model.telefone}" />
+
+				<h:outputLabel name="lblEmail" value="Email" />
+				<p:inputText id="txtEmail" label="lblEmail"
+					value="#{crtcliente.model.email}" />
+				<br />
+				<f:facet name="footer">
+					<p:commandButton value="OK" id="cbOK" action="#{crtcliente.save()}"
+						update=":formtable:tabledados" onsuccess="PF('dlg1').hide()" />
+
+					<p:commandButton value="Cancelar" id="cbCancelar"
+						onsuccess="PF('dlg1').hide()" update=":formtable:tabledados" />
+
+				</f:facet>
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog width="500" heigth="100" id="removeDialog" modal="true"
+		header="Confirma a Exclusão do Registro ?" widgetVar="dlgRemove">
+
+		<h:form>
+			<h:panelGrid columns="2">
+				<h:commandButton action="#{crtcliente.remove()}" update=":formtable" value="OK"/>
+                      
+				<h:commandButton immediate="true" update=":formtable" value="Cancelar"/>
+			</h:panelGrid>
+		</h:form>
+		
+	</p:dialog>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

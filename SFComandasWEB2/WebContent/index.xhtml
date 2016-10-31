@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Manter Cliente</title>
+</h:head>
+<body>
+	<h1>Botoes das Paginas Existentes</h1>
+
+
+	<h:form>
+		<p:growl id="growl" life="2000" />
+
+		<p:menubar>
+			<p:submenu label="File" icon="ui-icon-document">
+				<p:submenu label="Cadastro" icon="ui-icon-contact">
+				
+					<p:menuitem value="Cliente" url="http://localhost:8080/SFComandasWEB/cliente.xhtml" />
+					<p:menuitem value="Funcionario" url="http://localhost:8080/SFComandasWEB/funcionario.xhtml"/>
+					<p:menuitem value="Estoque" url="http://localhost:8080/SFComandasWEB/estoque.xhtml"/>
+					<p:menuitem value="Produto" url="http://localhost:8080/SFComandasWEB/produto.xhtml"/>
+					<p:menuitem value="Reservas" url="http://localhost:8080/SFComandasWEB/reservas.xhtml"/>
+					<p:menuitem value="servicos" url="http://localhost:8080/SFComandasWEB/servicos.xhtml"/>
+					
+				</p:submenu>
+				
+				<p:menuitem value="Open" url="#" />
+				<p:separator />
+				<p:menuitem value="Quit" url="#" />
+			</p:submenu>
+		</p:menubar>
+	</h:form>
+
+
+
+</body>
+</html>

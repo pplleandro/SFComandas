@@ -1,0 +1,12 @@
+package control;
+
+import javax.ejb.EJB;
+
+import ejb.EstoqueBeanLocal;
+import version01.Estoque;
+
+public class crtEstoque {
+	@EJB
+	private EstoqueBeanLocal EstoqueBean;
+	private Estoque model = new Estoque();
+}

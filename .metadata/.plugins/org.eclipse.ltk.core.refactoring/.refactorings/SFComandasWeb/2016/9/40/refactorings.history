@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SFComandasWEB/WebContent/caixa.html&apos; to &apos;caixa.xhtml&apos;" description="Rename resource &apos;caixa.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/caixa.html" name="caixa.xhtml" stamp="1474934919923" updateReferences="true"/>
+</session>
