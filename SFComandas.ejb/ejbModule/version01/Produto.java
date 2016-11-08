@@ -13,9 +13,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-//@NamedQueries({
-//	@NamedQuery(name="getAllProduto", query="select c from Produto c")
-//})
+@NamedQueries({
+	@NamedQuery(name="getAllProduto", query="select c from Produto c")
+})
 
 
 @Entity

@@ -105,7 +105,7 @@
 
 
 			<p:dialog width="800" height="300" id="detailDialog" modal="true"
-				header="Detalhes da Comanda" widgetVar="dlg1">
+				header="Detalhes da Comanda" widgetVar="dlg1" appendTo="@(body)">
 				<h:form id="form">
 
 					<p:panel width="" height="" header="Incluir Produto">
@@ -136,7 +136,7 @@
 									onsuccess="PF('dlg1').hide()" />
 
 								<p:commandButton value="Excluir Item" id="cbExcluir"
-									onsuccess="PF('dlg1').hide()" />
+									onsuccess="PF('dlgRemove').hide()" />
 
 								<p:commandButton value="Cancelar" id="cbCancelar"
 									onsuccess="PF('dlg1').hide()" />
@@ -149,7 +149,7 @@
 
 
 			<p:dialog width="800" height="300" id="detailDialog2" modal="true"
-				header="Detalhes da Comanda" widgetVar="dlg2">
+				header="Detalhes da Comanda" widgetVar="dlg2" appendTo="@(body)">
 				<h:form id="form2">
 
 					<p:panel width="" height="" header="Incluir Serviços">
@@ -192,6 +192,21 @@
 						</p:dataTable>
 					</p:panel>
 				</h:form>
+			</p:dialog>
+			
+			<p:dialog width="500" heigth="100" id="removeDialog" modal="true"
+				header="Confirma a Exclusão do Registro ?" widgetVar="dlgRemove" appendTo="@(body)">
+
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:commandButton action="#{crtEstoque.remove()}"
+							update=":formtable" value="OK" />
+
+						<h:commandButton immediate="true" update=":formtable"
+							value="Cancelar" />
+					</h:panelGrid>
+				</h:form>
+
 			</p:dialog>
 
 

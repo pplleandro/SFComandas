@@ -1,5 +1,7 @@
 package control;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -7,7 +9,7 @@ import javax.faces.bean.ViewScoped;
 import ejb.ProdutoBeanLocal;
 import version01.Produto;
 
-@ManagedBean(name="crtproduto")
+@ManagedBean(name="crtProduto")
 @ViewScoped
 
 public class crtProduto {
@@ -38,6 +40,9 @@ public class crtProduto {
 	public void remove(){
 		produtoBean.remove(model);
 		
+	}
+	public List<Produto> getAllProduto(){
+		return produtoBean.getAllProduto();
 	}
 
 }

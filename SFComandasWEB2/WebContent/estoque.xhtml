@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta charset="UTF-8" />
-	<title>Modulo Caixa</title>
+	<title>Modulo Estoque</title>
 </h:head>
 <body>
 	<p:panel width="" height="300px">
@@ -110,12 +110,8 @@
 				</p:panel>
 			</h:form>
 
-
-
-
-
 			<p:dialog width="500" height="300" id="detailDialog1" modal="true"
-				header="Incluir Item em Estoque" widgetVar="dlg1">
+				header="Incluir Item em Estoque" widgetVar="dlg1" appendTo="@(body)">
 				<h:form id="form">
 
 					<h:panelGrid id="formDetail" columns="2">
@@ -151,7 +147,7 @@
 			
 			
 			<p:dialog width="500" heigth="100" id="removeDialog" modal="true"
-				header="Confirma a Exclusão do Registro ?" widgetVar="dlgRemove">
+				header="Confirma a Exclusão do Registro ?" widgetVar="dlgRemove" appendTo="@(body)">
 
 				<h:form>
 					<h:panelGrid columns="2">
@@ -164,13 +160,6 @@
 				</h:form>
 
 			</p:dialog>
-
-
-
-
-
-
-
 		</p:layoutUnit>
 	</p:layout>
 

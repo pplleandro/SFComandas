@@ -23,12 +23,13 @@ public class crtFuncionario {
 	}
 	
 	public void create(){
+		
 		model = new Funcionario();
 	}
 	
 
 	public void save(){
-		
+		System.out.println("passei aqui SAVEE");
 		funcionarioBean.save(model);
 		
 	}

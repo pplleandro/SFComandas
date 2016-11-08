@@ -46,12 +46,14 @@ public class ProdutoBean implements ProdutoBeanLocal {
 	}
 
 
-//	@Override
-//	public List<Produto> getAllProduto() {
-//		Query q = em.createNamedQuery("getAllProduto");
-//		q.setMaxResults(100);
-//		return q.getResultList();
-//	}
+	@Override
+	public List<Produto> getAllProduto() {
+		Query q = em.createNamedQuery("getAllProduto");
+		q.setMaxResults(100);
+		return q.getResultList();
+		
+	}
+
     
 
 }

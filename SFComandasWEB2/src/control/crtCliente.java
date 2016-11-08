@@ -8,7 +8,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ejb.CidadeBean;
 import ejb.ClienteBeanLocal;
+import version01.Cidade;
 import version01.Cliente;
 
 
@@ -21,16 +23,41 @@ public class crtCliente {
 	private ClienteBeanLocal clienteBean;
 	private Cliente model = new Cliente();
 	
+	@EJB
+	private CidadeBean cidadeBean;
+	
 	private String busca;
 	
+	private List<Cidade> colCidades = new ArrayList<Cidade>();
 	private List<Cliente> colCliente = new ArrayList<Cliente>();
 	
 	@PostConstruct
 	public void init(){
 		colCliente = clienteBean.getAllCliente();
+		colCidades = cidadeBean.getAllCidade();
 	}
 	
 	
+	public List<Cidade> getColCidades() {
+		return colCidades;
+	}
+
+
+	public void setColCidades(List<Cidade> colCidades) {
+		this.colCidades = colCidades;
+	}
+
+
+	public List<Cliente> getColCliente() {
+		return colCliente;
+	}
+
+
+	public void setColCliente(List<Cliente> colCliente) {
+		this.colCliente = colCliente;
+	}
+
+
 	public List<Cliente> getCoolCliente() {
 		return colCliente;
 	}

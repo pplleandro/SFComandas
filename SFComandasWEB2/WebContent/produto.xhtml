@@ -1,89 +1,153 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
-  	  xmlns:p="http://primefaces.org/ui">
-		<h:head>
-			<meta charset="UTF-8"/>
-			<title>Manter Produtos</title>
-			
-		</h:head>
-            <body>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Manter Produtos</title>
+</h:head>
+<body>
+	<p:panel width="" height="300px">
+	              SuperFacilComandas 
+	</p:panel>
+	<br> </br>
+
+	<p:layout style="min-width:900px;min-height:600px;">
+		<p:layoutUnit position="west" resizable="true" size="220" minSize="60"
+			maxSize="200">
+        MenuSFC
+        <br> </br>
+			<h:form>
+				<p:growl id="messages" showDetail="true" />
+
+				<p:slideMenu style="width:180px">
+
+					<p:submenu label="Consultas" icon="ui-icon-refresh">
+
+						<p:menuitem value="Itens" />
+						<p:menuitem value="Produtos" />
+						<p:menuitem value="Serviços" />
+						<p:menuitem value="Reservas" />
+					</p:submenu>
+
+
+					<p:submenu label="Modulos">
+
+						<p:menuitem value="Atendimento" url="http://www.prime.com.tr" />
+						<p:menuitem value="Caixa"
+							url="http://localhost:8080/SFComandasWEB/caixa.xhtml" />
+						<p:menuitem value="Cozinha" url="http://www.prime.com.tr" />
+						<p:menuitem value="Administração" url="http://www.prime.com.tr" />
+
+					</p:submenu>
+
+
+					<p:submenu label="Relatorios">
+
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+
+					</p:submenu>
+					<p:separator />
+
+					<p:submenu label="Sair" icon="ui-icon-extlink">
+					</p:submenu>
+				</p:slideMenu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
 			<h:form id="formtable">
-			
+
 				<p:panel header="Manter Produtos">
-				
-					<p:dataTable>
-					
+
+					<p:dataTable id="tabledados" value="#{crtProduto.getAllProduto()}"
+						var="umItem" selectionMode="single"
+						selection="#{crtProduto.model}" rowKey="#{umItem.oid}">
+
 						<f:facet name="header">Produtos SFComandas</f:facet>
-						
+
 						<p:column>
 							<f:facet name="header">Nome do Produto</f:facet>
-							<h:outputText/> 
+							<h:outputText value="#{umItem.nome}"
+							/>
 						</p:column>
-						
+
 						<p:column>
 							<f:facet name="header">Valor</f:facet>
-							<h:outputText/> 
+							<h:outputText value="#{umItem.valor}"/>
 						</p:column>
-						
+
 						<p:column>
 							<f:facet name="header">Descrição</f:facet>
-							<h:outputText/> 
+							<h:outputText />
 						</p:column>
-						
+
 						<f:facet name="footer">
-							<p:commandButton value="Incluir Produto"  
-								id="cbIncluir" onsuccess="PF('dlg1').show()" 
-								update=":form"/>
-				
-							<p:commandButton value="Alterar Produto" 
-							    id="cbAlterar" 
-								update=":form"
-								onsuccess="PF('dlg1').show()"/>
-								
-							<p:commandButton value="Excluir" 
-							    id="cbExcluir" 
-								update=":form"
-								onsuccess="PF('dlg1').show()"/>
-									
+							<p:commandButton value="Incluir Produto" id="cbIncluir"
+								onsuccess="PF('dlg1').show()" action="#{crtProduto.create()}" update=":form" />
+
+							<p:commandButton value="Alterar Produto" id="cbAlterar"
+								update=":form" onsuccess="PF('dlg1').show()" />
+
+							<p:commandButton value="Excluir" id="cbExcluir" update=":form"
+								onsuccess="PF('dlgRemove').show()" />
+
 						</f:facet>
-						
-				    </p:dataTable>
+
+					</p:dataTable>
 				</p:panel>
 			</h:form>
-			
-			<!--  AQUI OHHHHH -->
-			<p:dialog width="500" height="300" 
-				id="detailDialog" modal="true"
-				header="Detalhes do Produto" 
-				widgetVar="dlg1">
+
+
+			<p:dialog width="500" height="300" id="detailDialog" modal="true"
+				header="Detalhes do Produto" widgetVar="dlg1" appendTo="@(body)">
 				<h:form id="form">
-				
+
 					<h:panelGrid id="formDetail" columns="2">
-						<h:outputLabel name="lblNomeP" value="Nome do Produto"/>
-						<p:inputText id="txtNomeP" label="lblNomeP"/>
-						
-						<h:outputLabel name="lblValor" value="Valor do Produto"/>
-						<p:inputText id="txtValor" label="lblValor"/>
-							
-						<h:outputLabel name="lblDesc" value="Descrição"/>
-						<p:inputText id="txtDesc" label="lblDesc"/>
-						<br/>
+						<h:outputLabel name="lblNomeP" value="Nome do Produto" />
+						<p:inputText id="txtNomeP" label="lblNomeP" value="#{crtProduto.model.nome}"/>
+
+						<h:outputLabel name="lblValor" value="Valor do Produto" />
+						<p:inputText id="txtValor" label="lblValor" value="#{crtProduto.model.valor}" />
+
+						<h:outputLabel name="lblDesc" value="Descrição" />
+						<p:inputText id="txtDesc" label="lblDesc" />
+						<br />
 						<f:facet name="footer">
-			               <p:commandButton  value="OK"
-			               	id="cbOK" 
-			               	onsuccess="PF('dlg1').hide()"/>
-			               	
-			               <p:commandButton  value="Cancelar"
-			               	id="cbCancelar" 
-			               	onsuccess="PF('dlg1').hide()"
-			               	/>	
-			               			               	
-			            </f:facet>
+							<p:commandButton value="OK" id="cbOK"
+								onsuccess="PF('dlg1').hide()" action="#{crtProduto.save()}"
+								update=":formtable:tabledados"/>
+
+							<p:commandButton value="Cancelar" id="cbCancelar"
+								onsuccess="PF('dlg1').hide()" />
+
+						</f:facet>
 					</h:panelGrid>
 				</h:form>
-			</p:dialog>	
-		</body>
+			</p:dialog>
+			
+			<p:dialog width="500" heigth="100" id="removeDialog" modal="true"
+				header="Confirma a Exclusão do Registro ?" widgetVar="dlgRemove" appendTo="@(body)">
+
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:commandButton action="#{crtProduto.remove()}"
+							update=":formtable" value="OK" />
+
+						<h:commandButton immediate="true" update=":formtable"
+							value="Cancelar" />
+					</h:panelGrid>
+				</h:form>
+
+			</p:dialog>
+		</p:layoutUnit>
+	</p:layout>
+
+</body>
 </html>

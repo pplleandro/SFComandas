@@ -9,115 +9,150 @@
 	<title>Manter Cliente</title>
 </h:head>
 <body>
-	<h:form id="formtable">
+	<p:panel width="" height="300px">
+	              SuperFacilComandas 
+	</p:panel>
+	<br> </br>
 
-		<p:panel width="" height="" header="Manter Cliente">
-            <p:inputText id="txtBusca">
-                <p:commandButton value="busca" id="btnBusca"
-                action="#{crtcliente.busca()}"
-                update="tabledados"
-                />
-                
-         
-            </p:inputText>
-			<p:dataTable value="#{crtcliente.getAllCliente()}" var="umcliente"
-				selectionMode="single" selection="#{crtcliente.model}"
-				rowKey="#{umcliente.oid}" id="tabledados">
+	<p:layout style="min-width:900px;min-height:600px;">
+		<p:layoutUnit position="west" resizable="true" size="220" minSize="60"
+			maxSize="200">
+        MenuSFC
+        <br> </br>
+			<h:form>
+				<p:growl id="messages" showDetail="true" />
 
-				<f:facet name="header">Lista de Clientes</f:facet>
+				<p:slideMenu style="width:180px">
 
-				<p:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{umcliente.nome}" />
-				</p:column>
+					<p:submenu label="Consultas" icon="ui-icon-refresh">
 
-				<p:column>
-					<f:facet name="header">Telefone</f:facet>
-					<h:outputText value="#{umcliente.telefone}" />
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">Email</f:facet>
-					<h:outputText value="#{umcliente.email}" />
-				</p:column>
-
-				<f:facet name="footer">
-					<p:commandButton value="Incluir" action="#{crtcliente.create()}"
-						id="cbIncluir" onsuccess="PF('dlg1').show()" update=":form" />
-
-					<p:commandButton value="Alterar" id="cbAlterar" update=":form"
-						onsuccess="PF('dlg1').show()" />
-
-					<p:commandButton value="Excluir" id="cbExcluir" update=":form"
-						icon="ui-icon-extlink" oncomplete="PF('dlgRemove').show()" />
-
-				</f:facet>
-
-			</p:dataTable>
-		</p:panel>
-	</h:form>
+						<p:menuitem value="Itens" />
+						<p:menuitem value="Produtos" />
+						<p:menuitem value="Serviços" />
+						<p:menuitem value="Reservas" />
+					</p:submenu>
 
 
-	<p:dialog width="500" height="300" id="detailDialog" modal="true"
-		header="Detalhe do Cliente" widgetVar="dlg1">
-		<h:form id="form">
+					<p:submenu label="Modulos">
 
-			<h:panelGrid id="formDetail" columns="2">
-				<h:outputLabel name="lblNome" value="Nome" />
-				<p:inputText id="txtNome" label="lblNome"
-					value="#{crtcliente.model.nome}" />
+						<p:menuitem value="Atendimento" url="http://www.prime.com.tr" />
+						<p:menuitem value="Caixa"
+							url="http://localhost:8080/SFComandasWEB/caixa.xhtml" />
+						<p:menuitem value="Cozinha" url="http://www.prime.com.tr" />
+						<p:menuitem value="Administração" url="http://www.prime.com.tr" />
 
-				<h:outputLabel name="lblTel" value="Telefone" />
-				<p:inputText id="txtTel" label="lblTel"
-					value="#{crtcliente.model.telefone}" />
+					</p:submenu>
 
-				<h:outputLabel name="lblEmail" value="Email" />
-				<p:inputText id="txtEmail" label="lblEmail"
-					value="#{crtcliente.model.email}" />
-				<br />
-				<f:facet name="footer">
-					<p:commandButton value="OK" id="cbOK" action="#{crtcliente.save()}"
-						update=":formtable:tabledados" onsuccess="PF('dlg1').hide()" />
 
-					<p:commandButton value="Cancelar" id="cbCancelar"
-						onsuccess="PF('dlg1').hide()" update=":formtable:tabledados" />
+					<p:submenu label="Relatorios">
 
-				</f:facet>
-			</h:panelGrid>
-		</h:form>
-	</p:dialog>
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
 
-	<p:dialog width="500" heigth="100" id="removeDialog" modal="true"
-		header="Confirma a Exclusão do Registro ?" widgetVar="dlgRemove">
+					</p:submenu>
+					<p:separator />
 
-		<h:form>
-			<h:panelGrid columns="2">
-				<h:commandButton action="#{crtcliente.remove()}" update=":formtable" value="OK"/>
-                      
-				<h:commandButton immediate="true" update=":formtable" value="Cancelar"/>
-			</h:panelGrid>
-		</h:form>
-		
-	</p:dialog>
+					<p:submenu label="Sair" icon="ui-icon-extlink">
+					</p:submenu>
+				</p:slideMenu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
+			<h:form id="formtable">
+
+				<p:panel width="" height="" header="Manter Cliente">
+				
+					<p:inputText id="txtBusca" >
+						<p:commandButton value="Buscar Cliente" id="btnBusca"
+							action="#{crtcliente.busca()}" update="tabledados" />
+					</p:inputText>
+					
+					<p:dataTable value="#{crtcliente.getAllCliente()}" var="umcliente"
+						selectionMode="single" selection="#{crtcliente.model}"
+						rowKey="#{umcliente.oid}" id="tabledados">
+
+						<f:facet name="header">Lista de Clientes</f:facet>
+
+						<p:column>
+							<f:facet name="header">Nome</f:facet>
+							<h:outputText value="#{umcliente.nome}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Telefone</f:facet>
+							<h:outputText value="#{umcliente.telefone}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Email</f:facet>
+							<h:outputText value="#{umcliente.email}" />
+						</p:column>
+
+						<f:facet name="footer">
+							<p:commandButton value="Incluir" action="#{crtcliente.create()}"
+								id="cbIncluir" onsuccess="PF('dlg1').show()" update=":form" />
+
+							<p:commandButton value="Alterar" id="cbAlterar" update=":form"
+								onsuccess="PF('dlg1').show()" />
+
+							<p:commandButton value="Excluir" id="cbExcluir" update=":form"
+								icon="ui-icon-extlink" oncomplete="PF('dlgRemove').show()" />
+
+						</f:facet>
+
+					</p:dataTable>
+				</p:panel>
+			</h:form>
+
+
+			<p:dialog width="500" height="300" id="detailDialog" modal="true"
+				header="Detalhe do Cliente" widgetVar="dlg1" appendTo="@(body)">
+				<h:form id="form">
+
+					<h:panelGrid id="formDetail" columns="2">
+						<h:outputLabel name="lblNome" value="Nome" />
+						<p:inputText id="txtNome" label="lblNome"
+							value="#{crtcliente.model.nome}" />
+
+						<h:outputLabel name="lblTel" value="Telefone" />
+						<p:inputText id="txtTel" label="lblTel"
+							value="#{crtcliente.model.telefone}" />
+
+						<h:outputLabel name="lblEmail" value="Email" />
+						<p:inputText id="txtEmail" label="lblEmail"
+							value="#{crtcliente.model.email}" />
+						<br />
+						<f:facet name="footer">
+							<p:commandButton value="OK" id="cbOK"
+								action="#{crtcliente.save()}" update=":formtable:tabledados"
+								onsuccess="PF('dlg1').hide()" />
+
+							<p:commandButton value="Cancelar" id="cbCancelar"
+								onsuccess="PF('dlg1').hide()" update=":formtable:tabledados" />
+
+						</f:facet>
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+
+			<p:dialog width="500" heigth="100" id="removeDialog" modal="true"
+				header="Confirma a Exclusão do Registro ?" widgetVar="dlgRemove" appendTo="@(body)">
+
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:commandButton action="#{crtcliente.remove()}"
+							update=":formtable" value="OK" />
+
+						<h:commandButton immediate="true" update=":formtable"
+							value="Cancelar" />
+					</h:panelGrid>
+				</h:form>
+			</p:dialog>
+		</p:layoutUnit>
+	</p:layout>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

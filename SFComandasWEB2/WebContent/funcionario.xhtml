@@ -1,89 +1,159 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:h="http://java.sun.com/jsf/html"
-	  xmlns:f="http://java.sun.com/jsf/core"
-  	  xmlns:p="http://primefaces.org/ui">
-		<h:head>
-			<meta charset="UTF-8"/>
-			<title>Manter Funcionario</title>
-			
-		</h:head>
-            <body>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Modulo Caixa</title>
+</h:head>
+<body>
+	<p:panel width="" height="300px">
+	              SuperFacilComandas 
+	</p:panel>
+	<br> </br>
+
+	<p:layout style="min-width:900px;min-height:600px;">
+		<p:layoutUnit position="west" resizable="true" size="220" minSize="60"
+			maxSize="200">
+        MenuSFC
+        <br> </br>
+			<h:form>
+				<p:growl id="messages" showDetail="true" />
+
+				<p:slideMenu style="width:180px">
+
+					<p:submenu label="Consultas" icon="ui-icon-refresh">
+
+						<p:menuitem value="Itens" />
+						<p:menuitem value="Produtos" />
+						<p:menuitem value="Serviços" />
+						<p:menuitem value="Reservas" />
+					</p:submenu>
+
+
+					<p:submenu label="Modulos">
+
+						<p:menuitem value="Atendimento" url="http://www.prime.com.tr" />
+						<p:menuitem value="Caixa"
+							url="http://localhost:8080/SFComandasWEB/caixa.xhtml" />
+						<p:menuitem value="Cozinha" url="http://www.prime.com.tr" />
+						<p:menuitem value="Administração" url="http://www.prime.com.tr" />
+
+					</p:submenu>
+
+
+					<p:submenu label="Relatorios">
+
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+						<p:menuitem value="Construct" url="http://www.prime.com.tr" />
+
+					</p:submenu>
+					<p:separator />
+
+					<p:submenu label="Sair" icon="ui-icon-extlink">
+					</p:submenu>
+				</p:slideMenu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
 			<h:form id="formtable">
-			
+
 				<p:panel header="Manter Funcionario">
-				
-					<p:dataTable>
-					
+
+					<p:dataTable id="tabledados"
+						var="umItem" selectionMode="single"
+						selection="#{crtFuncionario.model}" rowKey="#{umItem.oid}" >
+
 						<f:facet name="header">Funcionarios SFComandas</f:facet>
-						
+
 						<p:column>
 							<f:facet name="header">Nome do Funcionario</f:facet>
-							<h:outputText/> 
+							<h:outputText />
 						</p:column>
-						
+
 						<p:column>
 							<f:facet name="header">Sobrenome</f:facet>
-							<h:outputText/> 
+							<h:outputText />
 						</p:column>
-						
+
 						<p:column>
 							<f:facet name="header">Data de Nascimento</f:facet>
-							<h:outputText/> 
+							<h:outputText />
 						</p:column>
-						
+
 						<f:facet name="footer">
-							<p:commandButton value="Incluir Funcionario"  
-								id="cbIncluir" onsuccess="PF('dlg1').show()" 
+							<p:commandButton value="Incluir Funcionario" id="cbIncluir"
+								action="#{crtFuncionario.create()}" onsuccess="PF('dlg1').show()"
 								update=":form"/>
-				
-							<p:commandButton value="Alterar Funcionario" 
-							    id="cbAlterar" 
-								update=":form"
-								onsuccess="PF('dlg1').show()"/>
-								
-							<p:commandButton value="Excluir" 
-							    id="cbExcluir" 
-								update=":form"
-								onsuccess="PF('dlg1').show()"/>
-									
+
+							<p:commandButton value="Alterar Funcionario" id="cbAlterar"
+								update=":form" onsuccess="PF('dlg1').show()" />
+
+							<p:commandButton value="Excluir" id="cbExcluir" update=":form"
+								onsuccess="PF('removeDialog').show()" />
+
 						</f:facet>
-						
-				    </p:dataTable>
+
+					</p:dataTable>
 				</p:panel>
 			</h:form>
-			
+
 			<!--  AQUI OHHHHH -->
-			<p:dialog width="500" height="300" 
-				id="detailDialog" modal="true"
-				header="Detalhes do Funcionario" 
-				widgetVar="dlg1">
+			<p:dialog width="500" height="300" id="detailDialog" modal="true"
+				header="Detalhes do Funcionario" widgetVar="dlg1" appendTo="@(body)">
 				<h:form id="form">
-				
+
 					<h:panelGrid id="formDetail" columns="2">
-						<h:outputLabel name="lblNome" value="Nome Funcionario"/>
-						<p:inputText id="txtNome" label="lblNome"/>
-						
-						<h:outputLabel name="lblSobre" value="Sobrenome"/>
-						<p:inputText id="txtSobre" label="lblSobre"/>
-							
-						<h:outputLabel name="lblDNasc" value="Data Nascimento"/>
-						<p:inputText id="txtDNasc" label="lblDNasc"/>
-						<br/>
+						<h:outputLabel name="lblNome" value="Nome Funcionario" />
+						<p:inputText id="txtNome" label="lblNome" 
+						value="#{crtFuncionario.model.funcNome}" />
+
+						<h:outputLabel name="lblSobre" value="Sobrenome" />
+						<p:inputText id="txtSobre" label="lblSobre"
+						value="#{crtFuncionario.model.funcSobreNome}"  />
+
+						<h:outputLabel name="lblDNasc" value="Data Nascimento" />
+						<p:inputText id="txtDNasc" label="lblDNasc"
+						value="#{crtFuncionario.model.dataNasc}" />
+						<br />
 						<f:facet name="footer">
-			               <p:commandButton  value="OK"
-			               	id="cbOK" 
-			               	onsuccess="PF('dlg1').hide()"/>
-			               	
-			               <p:commandButton  value="Cancelar"
-			               	id="cbCancelar" 
-			               	onsuccess="PF('dlg1').hide()"
-			               	/>	
-			               			               	
-			            </f:facet>
+							<p:commandButton value="OK" id="cbOK"
+								action="#{crtFuncionario.save()}"
+								update=":formtable:tabledados" 
+								onsuccess="PF('dlg1').hide()" 
+								/>
+
+							<p:commandButton value="Cancelar" id="cbCancelar"
+								onsuccess="PF('dlg1').hide()" />
+
+						</f:facet>
 					</h:panelGrid>
 				</h:form>
-			</p:dialog>	
-		</body>
+			</p:dialog>
+
+			<p:dialog width="500" heigth="100" id="removeDialog" modal="true"
+				header="Confirma a Exclusão do Registro ?" widgetVar="dlgRemove"
+				appendTo="@(body)">
+
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:commandButton action="#{crtFuncionario.remove()}"
+							update=":formtable" value="OK" />
+
+						<h:commandButton immediate="true" update=":formtable"
+							value="Cancelar" />
+					</h:panelGrid>
+				</h:form>
+
+			</p:dialog>
+
+		</p:layoutUnit>
+	</p:layout>
+</body>
 </html>

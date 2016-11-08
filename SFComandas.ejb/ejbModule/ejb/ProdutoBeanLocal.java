@@ -11,6 +11,6 @@ public interface ProdutoBeanLocal {
 	
 	public void save(Produto produto);
 	public void remove(Produto produto);
-	//public List<Produto> getAllProduto();
+	public List<Produto> getAllProduto();
 
 }

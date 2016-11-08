@@ -1,0 +1,20 @@
+package ejb;
+
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class CidadeBean
+ */
+@Stateless
+@LocalBean
+public class CidadeBean {
+
+    /**
+     * Default constructor. 
+     */
+    public CidadeBean() {
+        // TODO Auto-generated constructor stub
+    }
+
+}
